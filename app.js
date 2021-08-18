@@ -5,7 +5,7 @@ const passport = require('passport');
 const flash = require('connect-flash');
 const session = require('express-session');
 const path = require('path');
-var cors = require('cors');
+const cors = require('cors')
 const bodyParser = require('body-parser')
 const app = express();
 
@@ -19,6 +19,8 @@ app.use(bodyParser.json());
 // // Static files
 // app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(cors());
+
 // app.use(cors({
 //   origin: ['http://localhost:4200', 'http://127.0.0.1:4200'],
 //   credentials: true,
@@ -26,7 +28,7 @@ app.use(bodyParser.json());
 // }))
 
 app.use(function (req, res, next) {
-  res.setHeader("Access-Control-Allow-Origin", "http://localhost:4200"); // update to match the domain you will make the request from
+  res.setHeader("Access-Control-Allow-Origin", 'http://localhost:4200'); // update to match the domain you will make the request from
   res.setHeader("Access-Control-Allow-Credentials", "true");
   res.setHeader(
     "Access-Control-Allow-Headers",
