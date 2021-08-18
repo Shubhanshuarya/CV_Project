@@ -175,6 +175,7 @@ router.post("/updateValue/:id", function (req, res, next){
     } else {
       console.log(data);
       res.status(200).json({message: `<h1>Thanks for updating data</h1><p><a href="/user">Go Back to Dashboard</a>`});
+      alert('Data Updated Successfully');
     }
   })
   .catch((err) => {
