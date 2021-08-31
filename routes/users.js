@@ -162,7 +162,7 @@ router.get("/logout", function (req, res, next) {
 //   return res.status(401).json({ message: "Unauthorized Request" });
 // }
 
-router.post("/updateValue/:id", function (req, res, next){
+router.post("/resumegenerator/:id", function (req, res, next){
   console.log(req.params);
   User.findByIdAndUpdate(req.params.id, req.body, { useFindAndModify: false})
   .then((data) => {
@@ -174,7 +174,8 @@ router.post("/updateValue/:id", function (req, res, next){
         });
     } else {
       console.log(data);
-      res.status(200).json({message: `<h1>Thanks for updating data</h1><p><a href="/user">Go Back to Dashboard</a>`});
+      // res.status(200).json({message: `<h1>Thanks for updating data</h1><p><a href="/ge">Go Back to Dashboard</a>`});
+      res.status(200).json({message: 'Resume Generated'});
       alert('Data Updated Successfully');
     }
   })
@@ -183,5 +184,30 @@ router.post("/updateValue/:id", function (req, res, next){
   });
 })
 
+router.get('/resumefetch/:id', function(req, res, next){
+  console.log(req.params.id);
+  // console.log(req.isAuthenticated());
+  // if(!req.isAuthenticated()){
+  //   return res.status(401).json({ message: "Unauthorized Request" });
+  // }
+  // return res.status(200).json(req.user);
+  User.findById({ _id: req.params.id })
+      .then((data) => {
+        if (!data) {
+          res
+            .status(404)
+            .send({
+              message: `Cannot Update user with ${id}. Maybe user not found!`,
+            });
+        } else {
+          // console.log(data);
+
+          return res.status(200).json(data);
+        }
+      })
+      .catch((err) => {
+        res.status(500).send({ message: "Error Update user information" });
+      });
+})
 
 module.exports = router;

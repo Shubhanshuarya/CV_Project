@@ -20,17 +20,91 @@ const UserSchema = new mongoose.Schema({
         type: String,
         default: Date.now
     },
-    linkedin:{
-        type: String
-    },
-    github:{
+    address: {
         type: String,
+        required: true,
     },
-    twitter:{
-        type: String,
+    mobilenumber: {
+        type: Number,
+        required: true,
+        validate: {
+            validator: function(v) {
+                return /d{10}/.test(v);
+            },
+            message: '{VALUE} is not a valid 10 digit number!'
+        }
     },
-    facebook:{
+    collegename: {
         type: String,
+        required: true,
+    },
+    degree: {
+        type: String,
+        required: true,
+    },
+    fromyear: {
+        type: Object,       
+        required: true,
+    },
+    toyear: {
+        type: Object,
+        required: true,
+    },
+    collegecity: {
+        type: String,
+        required: true,
+    },
+    collegestate: {
+        type: String,
+        required: true,
+    },
+    cgpa: {
+        type: Number,
+        required: true,
+    },
+    github: {
+        type: String,
+        required: true,
+    },
+    linkedin: {
+        type: String,
+        required: true,
+    },
+    codechef: {
+        type: String,
+        required: true,
+    },
+    leetcode: {
+        type: String,
+        required: true,
+    },
+    hackerrank: {
+        type: String,
+        required: true,
+    },
+    exp_companyname: {
+        type: String,
+        required: true,
+    },
+    exp_position: {
+        type: String,
+        required: true,
+    },
+    exp_fromyear: {
+        type: Object,       
+        required: true,
+    },
+    exp_toyear: {
+        type: Object,
+        required: true,
+    },
+    exp_location: {
+        type: String,
+        required: true,
+    },
+    exp_description: {
+        type: String,
+        required: true,
     }
 });
 
